@@ -1,7 +1,39 @@
 class Solution {
     public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0){
+            return 0;
+        }
         
-        // 1. error checking -> creating an edge case 
+        int numofIstalnds = 0;
+        
+        //traversing the whole grid 
+        for(int i =0; i<grid.length; i++){
+            for(int j = 0; j<grid[i].length; j++){
+                if(grid[i][j] == '1'){
+                    numofIstalnds = numofIstalnds + gridTraversal(i, j, grid);
+                }
+            }
+        }
+        return numofIstalnds;
+        
+    }
+    public int gridTraversal(int i, int j, char[][] grid){
+        if(i<0 || i>=grid.length || j<0 || j>=grid[i].length || grid[i][j] == '0'){
+            return 0;
+        }
+        grid[i][j] = '0';
+        gridTraversal(i+1, j, grid);
+        gridTraversal(i-1, j, grid);
+        gridTraversal(i, j-1, grid);
+        gridTraversal(i, j+1, grid); 
+        return 1;
+    }
+       
+}
+
+
+/*
+// 1. error checking -> creating an edge case 
         if(grid == null || grid.length == 0){
             return 0;
         }
@@ -14,14 +46,11 @@ class Solution {
         for(int i = 0; i<grid.length; i++){
             for(int j = 0; j<grid[i].length; j++){
                 if(grid[i][j] == '1'){
-                    numOfIslands += checkCase(grid, i , j);
-                    
+                    numOfIslands += checkCase(grid, i , j);  
                 }
             }
         }
-        
         return numOfIslands;
-        
     }
     
     public int checkCase(char[][] grid, int i, int j)
@@ -42,12 +71,4 @@ class Solution {
         checkCase(grid, i, j-1);    
         //after sunking we will return the cunt of islands we got i.e will be 1
         return 1;
-     }  
-}
-
-
-/*
-for(ListNode pointer: grid){
-            
-        }
 */
