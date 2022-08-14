@@ -12,19 +12,26 @@
 public class Solution {
     public boolean hasCycle(ListNode head) {
         
-        //Only maintains the ojects and no key-value pairs
-        HashSet<ListNode> hs = new HashSet<ListNode>();
+        if(head==null || head.next==null){
+            return false;
+        }
         
-        while(head!=null){
-            if(hs.contains(head)){
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast.next!=null && fast.next.next!=null){
+            
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast){
                 return true;
             }
             
-            hs.add(head);
-            head = head.next;
+            
         }
-        
         return false;
+        
         
     }
 }
