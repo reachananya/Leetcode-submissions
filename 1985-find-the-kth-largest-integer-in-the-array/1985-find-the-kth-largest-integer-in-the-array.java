@@ -3,18 +3,29 @@ import java.math.BigInteger;
 class Solution {
     public String kthLargestNumber(String[] nums, int k) {
         //arrangint it in descending order then find that particular number 
+        // using BigInteger and minHeap
         
-        BigInteger[] arr = new BigInteger[nums.length];
+        //BigInteger[] arr = new BigInteger[nums.length];
+        
+        PriorityQueue<BigInteger> arr = new PriorityQueue<BigInteger>();
         
         for(int i = 0; i<nums.length; i++){
-            arr[i] = new BigInteger(nums[i]);
+            arr.add(new BigInteger(nums[i]));
+            
+             if(arr.size()>k){
+                 arr.poll();
+             }
+            
+            
         }
         
-        Arrays.sort(arr);
+       
         
-        BigInteger res = arr[arr.length-k];
+        return String.valueOf(arr.peek());
         
-        return res.toString();
+       
+            
+            
         
     }
 }
