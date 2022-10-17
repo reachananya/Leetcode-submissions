@@ -14,7 +14,7 @@ class Solution {
                     visited[s.charAt(j)] = true;
                 }
             }
-            visited[s.charAt(i)] = false;
+            //visited[s.charAt(i)] = false;
         }
         return res;
     }
