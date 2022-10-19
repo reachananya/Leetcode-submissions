@@ -1,14 +1,20 @@
 class Solution {
     public boolean carPooling(int[][] trips, int capacity) {
-        int[] count = new int[1001];
+        int[] timeStamp = new int[1001];
         
         for(int[] t : trips){
-            for(int i = t[1]; i<t[2]; i++){
-                count[i] += t[0];
-            }
+            timeStamp[t[1]] += t[0];
+            timeStamp[t[2]] -= t[0];
         }
         
-        return Arrays.stream(count).max().getAsInt() <= capacity;
+        for(int number : timeStamp){
+            capacity = capacity - number;
+            if(capacity < 0){
+                return false;
+            }
+        }
+        return true;
+        
         
     }
 }
